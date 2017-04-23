@@ -1,0 +1,22 @@
+{
+    "name": "digitekng/module-shoppingcartmgt",
+    "license": "OSL-3.0",
+    "type": "magento2-module",
+    "description": "Add your description here",
+    "require": {
+    },
+    "authors":[
+        {
+            "name":"Add your name here",
+            "email":"Add your email address here"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "DigitekNg\\ShoppingCartMgt\\": ""
+        }
+    }
+}
