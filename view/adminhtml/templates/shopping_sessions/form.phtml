@@ -1,0 +1,78 @@
+<?php
+/**
+ * @var \Gloo\ConsumablesMgtSystem\Block\Adminhtml\ShoppingSessions\View\Form $this
+ */
+
+$shoppingSessions = $this->getShoppingSession();
+/**
+ * @var \Magento\Quote\Model\Quote $quote;
+ */
+
+/**
+ * @var \Magento\Quote\Model\Quote\Item $item;
+ */
+$quote = $this->getQuoteDetails();
+$items = $quote->getItemsCollection();
+?>
+<div class="admin__page-section-title">
+    <span class="title">Session Details</span>
+</div>
+<div class="admin__page-section-content">
+<table class="admin__table-secondary">
+    <tbody>
+    <tr>
+        <th>ID</th>
+        <td><?= $shoppingSessions->getID(); ?></td>
+    </tr>
+    <tr>
+        <th>Customer Name</th>
+        <td><?= $this->getCustomerName($shoppingSessions->getCustomerId()); ?></td>
+    </tr>
+    <tr>
+        <th>Requester</th>
+        <td><?= $shoppingSessions->getExtraDetails()['extrinsic']['RequesterName']; ?></td>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <td><?= $shoppingSessions->getCreated(); ?></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="admin__page-section-title">
+    <span class="title">Cart Details</span>
+</div>
+<div class="admin__page-section-content">
+    <table class="admin__table-secondary">
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>SKU</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Row Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $i = 1;?>
+        <?php foreach($items as  $item):?>
+        <tr>
+            <td><?= $i; ?></td>
+            <td><?= $item->getSku(); ?></td>
+            <td><?= $item->getName(); ?></td>
+            <td><?= $item->getQty(); ?></td>
+            <td><?= $this->formatAmount($item->getPrice()); ?></td>
+            <td><?= $this->formatAmount($item->getRowTotal()); ?></td>
+        </tr>
+            <?php $i ++; ?>
+<?php endforeach; ?>
+        <tr>
+            <td colspan="4"></td>
+            <td><b>Total</b></td>
+            <td><?= $this->formatAmount($quote->getBaseGrandTotal()); ?></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

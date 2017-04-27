@@ -6,6 +6,6 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
     <menu>
-        <add id="digitekng_cart" title="Shopping Cart" module="DigitekNg_ShoppingCartMgt" sortOrder="50" resource="DigitekNg_ShoppingCartMgt::cart" parent="Magento_Sales::sales_operation"/>
+        <add id="digitekng_cart" title="Shopping Cart" module="DigitekNg_ShoppingCartMgt" sortOrder="50" action="digitek_cart/carts/index" resource="DigitekNg_ShoppingCartMgt::cart" parent="Magento_Sales::sales_operation"/>
     </menu>
 </config>
