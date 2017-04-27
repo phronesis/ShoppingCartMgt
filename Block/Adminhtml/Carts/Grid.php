@@ -14,6 +14,7 @@ class Grid extends Extended
 {
     private $quote;
     private $customerRepository;
+
     public function __construct
     (
         Context $context,
@@ -64,16 +65,55 @@ class Grid extends Extended
             'index' => 'entity_id',
         ));
 
-        $this->addColumn('customer_id', array(
-            'header' => __('Customer'),
-            'type' => 'number',
-            'index' => 'customer_id'
-            //'frame_callback'=>[$this,"getCustomerName"]
-        ));
-        $this->addColumn('base_grand_total', array(
-            'header' => __('Base Grand Total'),
+        $this->addColumn('customer_firstname', array(
+            'header' => __('First Name'),
             'type' => 'text',
-            'index' => 'base_grand_total',
+            'index' => 'customer_firstname',
+            'frame_callback'=>[$this,'appendUserLink']
+        ));
+        $this->addColumn('customer_lastname', array(
+            'header' => __('Last Name'),
+            'type' => 'text',
+            'index' => 'customer_lastname',
+            'frame_callback'=>[$this,'appendUserLink']
+        ));
+
+        $this->addColumn('is_active', array(
+            'header' => __('Is Active'),
+            'type' => 'options',
+            'options'=>['No','Yes'],
+            'index' => 'is_active'
+        ));
+
+        $this->addColumn('customer_is_guest', array(
+            'header' => __('Guest?'),
+            'type' => 'options',
+            'options'=>['No','Yes'],
+            'index' => 'customer_is_guest'
+        ));
+
+        $this->addColumn('items_count', array(
+            'header' => __('Items Count'),
+            'type' => 'number',
+            'index' => 'items_count'
+        ));
+        $this->addColumn('subtotal', array(
+            'header' => __('Sub Total'),
+            'type' => 'number',
+            'index' => 'subtotal',
+        ));
+        $this->addColumn('grand_total', array(
+            'header' => __('Grand Total'),
+            'type' => 'number',
+            'index' => 'grand_total',
+        ));
+
+        $this->addColumn('store_id', array(
+            'header' => __('Store'),
+            'type' => 'options',
+            'options'=>$this->getStores(),
+            'index' => 'store_id',
+           // 'frame_callback'=>[$this,'getStoreById']
         ));
 
 
@@ -115,9 +155,20 @@ class Grid extends Extended
         return parent::_prepareColumns();
     }
 
-    public function yesNo($value){
-        $yesNo = ["No","Yes"];
-        return $yesNo[$value];
+    public function appendUserLink($value,$row){
+        if(empty($value)) return;
+        return '<a href="'.$this->getUrl('customer/index/edit/',['id'=>$row['customer_id']]) .'">'.$value.' </a>';
+    }
+
+
+    public function getStores(){
+       $stores = $this->_storeManager->getStores();
+       $storeNames = [];
+       foreach($stores as $storeId=>$store){
+           $storeNames[$storeId] = $store->getName();
+       }
+
+       return $storeNames;
     }
 
 
