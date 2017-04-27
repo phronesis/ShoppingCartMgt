@@ -52,7 +52,6 @@ abstract class Carts extends Action {
 
     protected function getQuote($quoteId){
         $quote = $this->quoteRepository->get($quoteId);
-
         if(!$quote->getId()){
             throw new NotFoundException(__('Quote does not exists'));
         }
