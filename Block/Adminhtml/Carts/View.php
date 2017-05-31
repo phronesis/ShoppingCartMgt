@@ -36,7 +36,7 @@ class View extends Container{
     protected function _construct()
     {
         $this->_objectId = 'id';
-        $this->_controller = 'adminhtml_digitek_cart';
+        $this->_controller = 'adminhtml_carts';
         $this->_mode = 'view';
         $this->authorization = $this->getAuthorization();
 
@@ -92,5 +92,9 @@ class View extends Container{
     protected function getQuoteId()
     {
         return $this->registry->registry("quoteData")->getId();
+    }
+
+    public function getQuoteData(){
+        return $this->registry->registry("quoteData");
     }
 }

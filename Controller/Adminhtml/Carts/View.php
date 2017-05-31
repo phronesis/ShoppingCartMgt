@@ -1,31 +1,27 @@
 <?php
 
-namespace Gloo\ConsumablesMgtSystem\Controller\Adminhtml\ShoppingSessions;
+namespace DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
-use Gloo\ConsumablesMgtSystem\Controller\Adminhtml\ShoppingSessions;
-use Magento\Framework\Exception\NotFoundException;
-
+use DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
 use Magento\Framework\Controller\ResultFactory;
 
-class View extends ShoppingSessions {
+class View extends Carts {
 
     public function execute()
     {
         try{
             $quoteId = $this->getRequest()->getParam('quote_id');
-            $this->registry->register('shoppingSessionData',$this->getShoppingSessionData($quoteId));
             $this->registry->register('quoteData',$this->getQuote($quoteId));
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->pageFactory->create();
-            $resultPage->setActiveMenu('gloo_cms::shopping_sessions');
+            $resultPage->setActiveMenu('digitek_cart::digitekng_cart');
             $resultPage->getConfig()->getTitle()->prepend(__('Cart Details'));
-            $resultPage->addBreadcrumb(__('CMS'), __('CMS'));
-            $resultPage->addBreadcrumb(__('Shopping Sessions'), __('Shopping Sessions'));
-            $resultPage->addBreadcrumb(__('Shopping Details'), __('Shopping Details'));
+            $resultPage->addBreadcrumb(__('Carts'), __('Carts'));
+            $resultPage->addBreadcrumb(__('Cart Details'), __('Cart Details'));
 
             return $resultPage;
         }catch (\Exception $e){
-            $this->messageManager->addError($e->getMessage());
+            $this->messageManager->addErrorMessage($e->getMessage());
             $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
             $resultRedirect->setUrl($this->_redirect->getRefererUrl());
             return $resultRedirect;

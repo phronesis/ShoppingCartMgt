@@ -1,6 +1,6 @@
 <?php
 
-namespace Gloo\ConsumablesMgtSystem\Block\Adminhtml\ShoppingSessions\View;
+namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View;
 
 use Gloo\ConsumablesMgtSystem\Helper\Data;
 use Gloo\ConsumablesMgtSystem\Model\CustomerFactory;
@@ -10,7 +10,7 @@ use Magento\Framework\Registry;
 
 class Form extends Template {
 
-    protected $_template = 'shopping_sessions/form.phtml';
+    protected $_template = 'carts/form.phtml';
     protected $registry =null;
     protected $customerFactory;
     protected $helper;

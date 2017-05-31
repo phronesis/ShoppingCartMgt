@@ -52,7 +52,7 @@ class Grid extends Extended
         return $this->getUrl(
             '*/*/view',
             array(
-                'quote_id' => $row->getQuoteId()
+                'quote_id' => $row->getId()
             )
         );
     }

@@ -2,8 +2,7 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="content">
-                <block class="DigitekNg\ShoppingCartMgt\Carts\View" name="adminhtml.block.cms.shopping_sessions.view" as="view"/>
-
+                <block class="DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View" name="adminhtml.block.digitek.shopping.cart.view" as="view"/>
         </referenceContainer>
     </body>
 </page>

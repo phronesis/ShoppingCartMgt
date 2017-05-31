@@ -1,6 +1,5 @@
 <?php
-namespace Gloo\ConsumablesMgtSystem\Block\Adminhtml\ShoppingSessions\View;
-
+namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View;
 use Magento\Backend\Block\Template;
 
 class Items extends Template {
