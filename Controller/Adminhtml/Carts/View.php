@@ -14,7 +14,7 @@ class View extends Carts {
             $this->registry->register('quoteData',$this->getQuote($quoteId));
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->pageFactory->create();
-            $resultPage->setActiveMenu('digitek_cart::digitekng_cart_view');
+            $resultPage->setActiveMenu('digitek_cart::digitekng_cart');
             $resultPage->getConfig()->getTitle()->prepend(__('Cart Details'));
             $resultPage->addBreadcrumb(__('Carts'), __('Carts'));
             $resultPage->addBreadcrumb(__('Cart Details'), __('Cart Details'));

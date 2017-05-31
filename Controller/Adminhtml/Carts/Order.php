@@ -1,15 +1,14 @@
 <?php
 
-namespace Gloo\ConsumablesMgtSystem\Controller\Adminhtml\ShoppingSessions;
+namespace DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
-use Gloo\ConsumablesMgtSystem\Controller\Adminhtml\ShoppingSessions;
+use DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
-class Order extends ShoppingSessions {
+class Order extends Carts {
 
     public function execute()
     {
         $quoteId = $this->getRequest()->getParam("quote_id");
-        $shoppingSession = $this->getShoppingSessionData($quoteId);
         $quote = $this->getQuote($quoteId);
 
         /**
@@ -19,6 +18,6 @@ class Order extends ShoppingSessions {
         $quoteSession->setQuoteId($quoteId);
         $resultRedirect = $this->resultRedirectFactory->create();
         return $resultRedirect->setPath("sales/order_create/index",
-            ['customer_id'=>$shoppingSession->getCustomerId(),'store_id'=>$quote->getStoreId()]);
+            ['customer_id'=>$quote->getCustomerId(),'store_id'=>$quote->getStoreId()]);
     }
 }

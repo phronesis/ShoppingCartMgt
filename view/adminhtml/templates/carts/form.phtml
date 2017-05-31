@@ -1,9 +1,8 @@
 <?php
-/**
- * @var \Gloo\ConsumablesMgtSystem\Block\Adminhtml\ShoppingSessions\View\Form $this
- */
 
-$shoppingSessions = $this->getShoppingSession();
+/** @var DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View\Form $this*/
+/** @var  \Magento\Quote\Api\Data\CartInterface $quoteObject */
+$quote = $this->getQuoteDetails();
 /**
  * @var \Magento\Quote\Model\Quote $quote;
  */
@@ -15,26 +14,23 @@ $quote = $this->getQuoteDetails();
 $items = $quote->getItemsCollection();
 ?>
 <div class="admin__page-section-title">
-    <span class="title">Session Details</span>
+    <span class="title">Cart Details</span>
 </div>
 <div class="admin__page-section-content">
 <table class="admin__table-secondary">
     <tbody>
     <tr>
         <th>ID</th>
-        <td><?= $shoppingSessions->getID(); ?></td>
+        <td><?= $quote->getID(); ?></td>
     </tr>
     <tr>
         <th>Customer Name</th>
-        <td><?= $this->getCustomerName($shoppingSessions->getCustomerId()); ?></td>
+        <td><?= $quote->getCustomerFirstname(). " ". $quote->getCustomerLastname(); ?></td>
     </tr>
-    <tr>
-        <th>Requester</th>
-        <td><?= $shoppingSessions->getExtraDetails()['extrinsic']['RequesterName']; ?></td>
-    </tr>
+
     <tr>
         <th>Created</th>
-        <td><?= $shoppingSessions->getCreated(); ?></td>
+        <td><?= $quote->getCreatedAt(); ?></td>
     </tr>
     </tbody>
 </table>
@@ -71,7 +67,7 @@ $items = $quote->getItemsCollection();
         <tr>
             <td colspan="4"></td>
             <td><b>Total</b></td>
-            <td><?= $this->formatAmount($quote->getBaseGrandTotal()); ?></td>
+            <td><?= $this->formatAmount($quote->getBaseSubtotal()); ?></td>
         </tr>
         </tbody>
     </table>
