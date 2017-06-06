@@ -3,6 +3,8 @@ namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts;
 use Magento\Backend\Block\Widget\Form\Container;
 use \Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Registry;
+use Magento\Quote\Model\Quote;
+use Magento\Sales\Model\Order;
 
 class View extends Container{
 
@@ -18,15 +20,20 @@ class View extends Container{
      */
     protected $authorization;
     protected $registry;
+    /** @var Quote */
+    private $quoteDetails = null;
+    private $order;
     public function __construct
     (
         Context $context,
         Registry $registry,
+        Order $order,
         array $data
 
     )
     {
         $this->registry = $registry;
+        $this->order = $order;
         //var_dump($this->registry); exit;
 
         parent::__construct($context, $data);
@@ -46,10 +53,12 @@ class View extends Container{
         $this->buttonList->remove('reset');
         $this->buttonList->remove('save');
         $this->setId('digitek_cart_grid');
-        //$order = $this->getOrder();
+
+        $this->quoteDetails = $this->getQuoteData();
         if(
             $this->isAllowedAction('Magento_Sales::create') &&
             $this->isAllowedAction('DigitekNg_ShoppingCartMgt::cart_convert')
+            && $this->canBeConvertedToOrder()
         ){
 
         $this->buttonList->add(
@@ -65,6 +74,21 @@ class View extends Container{
             ]
         );
 
+        }
+
+        if($this->isConvertedToCart()){
+            $this->buttonList->add(
+                'view_order_details',
+                [
+                    'label' => __('View Order Details'),
+                    'class' => __('action-primary'),
+                    'id' => 'view_order_details',
+                    'onclick'=> 'setLocation(\''.$this->getOrderDetailsUrl().'\')',
+                    'data_attribute' => [
+                        'url' => $this->getOrderDetailsUrl()
+                    ]
+                ]
+            );
         }
 
     }
@@ -96,5 +120,26 @@ class View extends Container{
 
     public function getQuoteData(){
         return $this->registry->registry("quoteData");
+    }
+
+    public function canBeConvertedToOrder(){
+        if(!$this->isConvertedToCart()&& $this->quoteDetails->getIsActive() === '1'){
+            return true;
+        }
+        return false;
+    }
+
+    public function isConvertedToCart(){
+        return !is_null($this->quoteDetails->getReservedOrderId());
+    }
+
+    public function getOrderDetailsUrl(){
+        return parent::getUrl('sales/order/view',
+            ['order_id'=>$this->getOrderId($this->quoteDetails->getReservedOrderId())]);
+    }
+
+    public function getOrderId($incrementId){
+        $order = $this->order->loadByIncrementId($incrementId);
+        return $order->getId();
     }
 }

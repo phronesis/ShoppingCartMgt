@@ -5,6 +5,7 @@ namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts;
 use \Magento\Backend\Block\Widget\Grid\Extended;
 use \Magento\Backend\Block\Template\Context;
 use \Magento\Backend\Helper\Data;
+use DigitekNg\ShoppingCartMgt\Helper\Data as Helper;
 
 use Magento\Quote\Model\Quote;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;
@@ -14,6 +15,7 @@ class Grid extends Extended
 {
     private $quote;
     private $customerRepository;
+    private $helper;
 
     public function __construct
     (
@@ -21,10 +23,12 @@ class Grid extends Extended
         Data $backendHelper,
         Quote $quote,
         CustomerRepository $customerRepository,
+        Helper $helper,
         array $data
     )
     {
        $this->quote = $quote;
+       $this->helper = $helper;
        $this->customerRepository = $customerRepository;
         parent::__construct($context, $backendHelper, $data);
     }
@@ -101,11 +105,13 @@ class Grid extends Extended
             'header' => __('Sub Total'),
             'type' => 'number',
             'index' => 'subtotal',
+            'frame_callback'=>[$this,'formatAmount']
         ));
         $this->addColumn('grand_total', array(
             'header' => __('Grand Total'),
             'type' => 'number',
             'index' => 'grand_total',
+            'frame_callback'=>[$this,'formatAmount']
         ));
 
         $this->addColumn('store_id', array(
@@ -115,7 +121,6 @@ class Grid extends Extended
             'index' => 'store_id',
            // 'frame_callback'=>[$this,'getStoreById']
         ));
-
 
         $this->addColumn('created_at', array(
             'header' => __('Created At'),
@@ -133,13 +138,12 @@ class Grid extends Extended
             [
                 'header' => __('View'),
                 'type' => 'action',
-                'getter' => 'getQuoteId',
+                'getter' => 'getId',
                 'actions' => [
                     [
                         'caption' => __('View'),
                         'url' => [
-                            'base' => '*/*/view',
-                            'params' => ['store' => $this->getRequest()->getParam('store')]
+                            'base' => '*/*/view'
                         ],
                         'field' => 'quote_id'
                     ]
@@ -184,6 +188,10 @@ class Grid extends Extended
             return $customer->getName();
         }
         return;
+    }
+
+    public function formatAmount($amount){
+        return $this->helper->formatAmount($amount);
     }
 
 }

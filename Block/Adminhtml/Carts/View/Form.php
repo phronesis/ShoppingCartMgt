@@ -2,8 +2,8 @@
 
 namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View;
 
-use Gloo\ConsumablesMgtSystem\Helper\Data;
-use Gloo\ConsumablesMgtSystem\Model\CustomerFactory;
+use DigitekNg\ShoppingCartMgt\Helper\Data;
+use Magento\Customer\Model\CustomerFactory;
 use Magento\Backend\Block\Template;
 use Magento\Framework\Registry;
 
@@ -31,9 +31,7 @@ class Form extends Template {
         parent::__construct($context, $data);
     }
 
-    public function getShoppingSession(){
-        return $this->registry->registry('shoppingSessionData');
-    }
+
 
     public function getQuoteDetails(){
         return $this->registry->registry('quoteData');
@@ -41,14 +39,14 @@ class Form extends Template {
 
     public function getCustomerName($value){
         if($value){
-            $customer = $this->customerFactory->create()->getMagentoCustomer()->load($value);
+            $customer = $this->customerFactory->create()->load($value);
             return $customer->getName();
         }
         return;
     }
 
     public function formatAmount($amount){
-        return $this->helper->formatPrice($amount);
+        return $this->helper->formatAmount($amount);
     }
 
 

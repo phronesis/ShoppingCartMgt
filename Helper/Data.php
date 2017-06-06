@@ -2,6 +2,9 @@
 namespace DigitekNg\ShoppingCartMgt\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Magento\Framework\Pricing\Helper\Data as PriceHelper;
+use Magento\Framework\App\Helper\Context;
 
 class Data extends AbstractHelper{
 
