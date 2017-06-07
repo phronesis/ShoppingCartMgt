@@ -3,16 +3,16 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="DigitekNg_ShoppingCartMgt::cart" title="Digitek Cart" sortOrder="70">
-                    <resource id="DigitekNg_ShoppingCartMgt::cart_grid" title="View Cart List" sortOrder="10"/>
-                    <resource id="DigitekNg_ShoppingCartMgt::cart_details" title="View Cart Details" sortOrder="10"/>
-                    <resource id="DigitekNg_ShoppingCartMgt::cart_edit" title="Edit Cart" sortOrder="10"/>
-                    <resource id="DigitekNg_ShoppingCartMgt::cart_convert" title="Convert To Order" sortOrder="10"/>
+                <resource id="Digitek_ShoppingCartMgt::cart" title="Digitek Cart" sortOrder="70">
+                    <resource id="Digitek_ShoppingCartMgt::cart_grid" title="View Cart List" sortOrder="10"/>
+                    <resource id="Digitek_ShoppingCartMgt::cart_details" title="View Cart Details" sortOrder="10"/>
+                    <resource id="Digitek_ShoppingCartMgt::cart_edit" title="Edit Cart" sortOrder="10"/>
+                    <resource id="Digitek_ShoppingCartMgt::cart_convert" title="Convert To Order" sortOrder="10"/>
                 </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="DigitekNg_ShoppingCartMgt::settings" title="Digitek Shopping Cart" sortOrder="1000"/>
+                            <resource id="Digitek_ShoppingCartMgt::settings" title="Digitek Shopping Cart" sortOrder="1000"/>
                         </resource>
                     </resource>
                 </resource>

@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
+namespace Digitek\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
-use DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
+use Digitek\ShoppingCartMgt\Controller\Adminhtml\Carts;
 use Magento\Framework\Controller\ResultFactory;
 
 class View extends Carts {
@@ -14,7 +14,7 @@ class View extends Carts {
             $this->registry->register('quoteData',$this->getQuote($quoteId));
             /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
             $resultPage = $this->pageFactory->create();
-            $resultPage->setActiveMenu('digitek_cart::digitekng_cart');
+            $resultPage->setActiveMenu('digitek_cart::digitek_cart');
             $resultPage->getConfig()->getTitle()->prepend(__('Cart Details'));
             $resultPage->addBreadcrumb(__('Carts'), __('Carts'));
             $resultPage->addBreadcrumb(__('Cart Details'), __('Cart Details'));

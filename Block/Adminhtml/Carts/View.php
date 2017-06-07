@@ -1,5 +1,5 @@
 <?php
-namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts;
+namespace Digitek\ShoppingCartMgt\Block\Adminhtml\Carts;
 use Magento\Backend\Block\Widget\Form\Container;
 use \Magento\Backend\Block\Widget\Context;
 use Magento\Framework\Registry;
@@ -13,7 +13,7 @@ class View extends Container{
      *
      * @var string
      */
-    protected $_blockGroup = 'DigitekNg_ShoppingCartMgt';
+    protected $_blockGroup = 'Digitek_ShoppingCartMgt';
 
     /**
      * @var \Magento\Framework\AuthorizationInterface
@@ -57,7 +57,7 @@ class View extends Container{
         $this->quoteDetails = $this->getQuoteData();
         if(
             $this->isAllowedAction('Magento_Sales::create') &&
-            $this->isAllowedAction('DigitekNg_ShoppingCartMgt::cart_convert')
+            $this->isAllowedAction('Digitek_ShoppingCartMgt::cart_convert')
             && $this->canBeConvertedToOrder()
         ){
 

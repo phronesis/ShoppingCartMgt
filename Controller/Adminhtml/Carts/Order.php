@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
+namespace Digitek\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
-use DigitekNg\ShoppingCartMgt\Controller\Adminhtml\Carts;
+use Digitek\ShoppingCartMgt\Controller\Adminhtml\Carts;
 
 class Order extends Carts {
 

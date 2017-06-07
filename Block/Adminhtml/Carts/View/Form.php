@@ -1,8 +1,8 @@
 <?php
 
-namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts\View;
+namespace Digitek\ShoppingCartMgt\Block\Adminhtml\Carts\View;
 
-use DigitekNg\ShoppingCartMgt\Helper\Data;
+use Digitek\ShoppingCartMgt\Helper\Data;
 use Magento\Customer\Model\CustomerFactory;
 use Magento\Backend\Block\Template;
 use Magento\Framework\Registry;

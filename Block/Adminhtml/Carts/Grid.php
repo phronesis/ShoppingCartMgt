@@ -1,11 +1,11 @@
 <?php
 
 
-namespace DigitekNg\ShoppingCartMgt\Block\Adminhtml\Carts;
+namespace Digitek\ShoppingCartMgt\Block\Adminhtml\Carts;
 use \Magento\Backend\Block\Widget\Grid\Extended;
 use \Magento\Backend\Block\Template\Context;
 use \Magento\Backend\Helper\Data;
-use DigitekNg\ShoppingCartMgt\Helper\Data as Helper;
+use Digitek\ShoppingCartMgt\Helper\Data as Helper;
 
 use Magento\Quote\Model\Quote;
 use Magento\Customer\Model\ResourceModel\CustomerRepository;

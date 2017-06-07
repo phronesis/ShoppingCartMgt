@@ -1,5 +1,5 @@
 <?php
-namespace DigitekNg\ShoppingCartMgt\Helper;
+namespace Digitek\ShoppingCartMgt\Helper;
 
 use Magento\Framework\App\Helper\AbstractHelper;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;

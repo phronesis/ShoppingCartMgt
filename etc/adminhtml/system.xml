@@ -10,10 +10,10 @@
         <tab id="digitek_settings" translate="label" sortOrder="100">
             <label>Digitek Settings</label>
         </tab>
-        <section id="digitekng_shoppingcartmgt" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="digitek_shoppingcartmgt" translate="label" type="text" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
             <label>Digitek Cart Section</label>
             <tab>digitek_settings</tab>
-            <resource>DigitekNg_ShoppingCartMgt::settings</resource>
+            <resource>Digitek_ShoppingCartMgt::settings</resource>
             <group id="general" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>General</label>
                 <field id="enabled" translate="label" type="select" sortOrder="201" showInDefault="1" showInWebsite="1"

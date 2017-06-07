@@ -1,5 +1,5 @@
 <?php
-namespace DigitekNg\ShoppingCartMgt\Controller\Adminhtml;
+namespace Digitek\ShoppingCartMgt\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
 use Magento\Framework\Controller\ResultFactory;
@@ -45,7 +45,7 @@ abstract class Carts extends Action {
      */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('DigitekNg_ShoppingCartMgt::cart_grid');
+        return $this->_authorization->isAllowed('Digitek_ShoppingCartMgt::cart_grid');
     }
 
 
