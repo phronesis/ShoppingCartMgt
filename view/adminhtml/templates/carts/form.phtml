@@ -1,0 +1,74 @@
+<?php
+
+/** @var Digitek\ShoppingCartMgt\Block\Adminhtml\Carts\View\Form $this*/
+/** @var  \Magento\Quote\Api\Data\CartInterface $quoteObject */
+$quote = $this->getQuoteDetails();
+/**
+ * @var \Magento\Quote\Model\Quote $quote;
+ */
+
+/**
+ * @var \Magento\Quote\Model\Quote\Item $item;
+ */
+$quote = $this->getQuoteDetails();
+$items = $quote->getItemsCollection();
+?>
+<div class="admin__page-section-title">
+    <span class="title">Cart Details</span>
+</div>
+<div class="admin__page-section-content">
+<table class="admin__table-secondary">
+    <tbody>
+    <tr>
+        <th>ID</th>
+        <td><?= $quote->getID(); ?></td>
+    </tr>
+    <tr>
+        <th>Customer Name</th>
+        <td><?= $quote->getCustomerFirstname(). " ". $quote->getCustomerLastname(); ?></td>
+    </tr>
+
+    <tr>
+        <th>Created</th>
+        <td><?= $quote->getCreatedAt(); ?></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="admin__page-section-title">
+    <span class="title">Cart Details</span>
+</div>
+<div class="admin__page-section-content">
+    <table class="admin__table-secondary">
+        <thead>
+        <tr>
+            <th>S/N</th>
+            <th>SKU</th>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Row Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $i = 1;?>
+        <?php foreach($items as  $item):?>
+        <tr>
+            <td><?= $i; ?></td>
+            <td><?= $item->getSku(); ?></td>
+            <td><?= $item->getName(); ?></td>
+            <td><?= $item->getQty(); ?></td>
+            <td><?= $this->formatAmount($item->getPrice()); ?></td>
+            <td><?= $this->formatAmount($item->getRowTotal()); ?></td>
+        </tr>
+            <?php $i ++; ?>
+<?php endforeach; ?>
+        <tr>
+            <td colspan="4"></td>
+            <td><b>Sub Total</b></td>
+            <td><?= $this->formatAmount($quote->getBaseSubtotal()); ?></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
