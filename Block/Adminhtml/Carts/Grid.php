@@ -176,7 +176,6 @@ class Grid extends Extended
     }
 
 
-
     public function getCustomerName($value){
         /**
          * @var \Magento\Customer\Model\Customer $customer;
@@ -184,7 +183,6 @@ class Grid extends Extended
 
         if($value){
             $customer = $this->customerFactory->create()->getMagentoCustomer()->load($value);
-
             return $customer->getName();
         }
         return;
