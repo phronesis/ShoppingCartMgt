@@ -2,7 +2,6 @@
 namespace Digitek\ShoppingCartMgt\Controller\Adminhtml;
 
 use Magento\Backend\App\Action;
-use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\Exception\NotFoundException;
@@ -25,14 +24,13 @@ abstract class Carts extends Action {
         Action\Context $context,
         PageFactory $pageFactory,
         QuoteRepository $quoteRepository,
-        Registry $registry,
-        ResultFactory $resultFactory
+        Registry $registry
     )
     {
 
         $this->quoteRepository = $quoteRepository;
         $this->registry = $registry;
-        $this->resultFactory = $resultFactory;
+        $this->resultFactory = $context->getResultFactory();
         $this->pageFactory= $pageFactory;
         $this->resultRedirectFactory = $context->getResultRedirectFactory();
         parent::__construct($context);
